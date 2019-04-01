@@ -5,6 +5,8 @@ I am asuming here that only the pricing module is asked for. I am also asuming t
 I asume that the rental period is every started day or hour from the initial starting time. 
 The format of the start time and end time is assumed to be milliseconds.
 
+It is also heavily assumed that the end date cannot be before the start date and that neither can be negative intergerers. This having been checked through RegEx
+
 I am assuming that I only need to return a number.
 */
 function treePricesCalculator (treeType, start, end) {
@@ -44,12 +46,12 @@ function premiumTree (lengthOfTime) { // Premium Tree: First day free. Second da
 			
 		price = 0; // redundant, but makes change easier to implement
 
-	} else if (numberOfDays == 2) { // 
+	} else if (numberOfDays == 2) { // Again, makes changes easier to implement.
 		
 		price = 10;
 
 	} else { // it is assumed it is not possible to have non number values or negative values.
-		price = ((numberOfDays - 2) * 15) + 10;
+		price = ((numberOfDays - 2) * 15) + 10; // The two first days cost 15 USD. Due to the previous if statement, number of days cannot be zero.
 		if (price > 100) { // because max price is 100 USD 
 			price = 100;
 		}
